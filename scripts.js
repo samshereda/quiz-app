@@ -49,9 +49,9 @@ $(function(){
     function generateQuestion(){
         //Generate an html string from the question
         let question = QUESTIONS[questionNumber];
-        $('.quiz').html(`<form class="question">
-        <h2>Question ${questionNumber+1}</h2>
+        $('.quiz').html(`<h2>Question ${questionNumber+1}</h2>
         <h3>${question.question}</h3>
+        <form class="question">
         <input type="radio" id="${question.answers[0]}" name = "quiz" value = "${question.answers[0]}" required>
         <label for="${question.answers[0]}">${question.answers[0]}</label><br>
         <input type="radio" id="${question.answers[1]}" name = "quiz" value = "${question.answers[1]}">

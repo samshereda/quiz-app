@@ -4,25 +4,42 @@ h1 {
 }
 
 .quiz {
-    font-size: 5vw;
+    font-size: 4vw;
     border-style: solid;
     margin: 50px;
     text-align: center;
-    padding-bottom: 20px;
 }
 
-button {
+input{
+    width: 2em;
+    height: 2em;
+}
+
+.button {
     width: 50%;
-    height: 50px;
+    height: auto;
+    font-size: 5vw;
+    margin: 1em;
+    padding: 0.5em;
+}
+
+label{
+    padding: 10px;
 }
 
 @media only screen and (orientation: landscape){
-    h1 {
-        font-size: 5vw;
+    h1{
+        font-size: 4vw;
     }
 
-    .quiz{
-        font-size: 3vw;
+    .quiz, .button{
+        font-size: 2vw;
     }
+
+    input {
+        width: 1em;
+        height: 1em;
+    }
+
 }
 
