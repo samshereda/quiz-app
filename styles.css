@@ -1,0 +1,28 @@
+h1 {
+    text-align: center;
+    font-size: 10vw;
+}
+
+.quiz {
+    font-size: 5vw;
+    border-style: solid;
+    margin: 50px;
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+button {
+    width: 50%;
+    height: 50px;
+}
+
+@media only screen and (orientation: landscape){
+    h1 {
+        font-size: 5vw;
+    }
+
+    .quiz{
+        font-size: 3vw;
+    }
+}
+
