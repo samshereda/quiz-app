@@ -40,16 +40,11 @@ $(function(){
 
     function render(){
         //render the quiz app
-        console.log('`render` ran');
-        
         if (STORE.quizStarted){
-            console.log(STORE);
             if(STORE.questionNumber >= STORE.questions.length){
-                console.log('quiz finished');
                 $('main').html(generateFinalPage());
             } else if (STORE.questions[STORE.questionNumber].playerAnswer !== null){
                 const question = STORE.questions[STORE.questionNumber];
-                console.log(question);
                 $('main').html(generateAnswerPage(question.correctAnswer === question.playerAnswer));
             } else {
                 $('main').html(generateQuestionPage());
@@ -78,11 +73,11 @@ $(function(){
         <label for="2">${question.answers[2]}</label><br>
         <input type="radio" id="3" name = "answer" value = 3>
         <label for="3">${question.answers[3]}</label><br>
-        <input class="button" type="submit" value="Submit"></form>`
+        <input class="button" type="submit" value="Submit"></form>
+        <p>You've answered ${getScore()} questions correctly.</p>`;
     } 
 
     function generateAnswerPage(correct){
-        console.log(correct);
         //Generate an html string for the answer page
         let pageText;
         let button;
@@ -95,18 +90,17 @@ $(function(){
             <h3>Incorrect.</h3>
             <p>The correct answer is: ${STORE.questions[STORE.questionNumber].answers[STORE.questions[STORE.questionNumber].correctAnswer]}</p>`;
         }
-
-        if (STORE.questionNumber>=STORE.questions.length){
-            button = 'Next question';
-        } else {
+        if (STORE.questionNumber>=STORE.questions.length - 1){
             button = 'Finish';
+        } else {
+            button = 'Next question';
         }
-
+        console.log(STORE.questionNumber, STORE.questions.length);
         return `${pageText}
-        <p>You've answered ${getScore()} out of ${STORE.questionNumber + 1} questions correcly.</p>
         <button class="button next-question">
             <span>${button}</span>
-        </button>`;
+        </button>
+        <p>You've answered ${getScore()} questions correctly.</p>`;
         
     }
 
@@ -129,7 +123,6 @@ $(function(){
         //Take answer input and add to score
         $('.quiz').on('submit','.question', event => {
             event.preventDefault();
-            console.log('`handleAnswer` ran');
             const answer = parseInt($('input[name=answer]:checked','.question').val());
             STORE.questions[STORE.questionNumber].playerAnswer = answer;
             render();
@@ -154,7 +147,6 @@ $(function(){
 
     function handleRestart(){
         $('.quiz').on('click','.restart-quiz', event => {
-            console.log('restart ran');
             STORE.quizStarted=false;
             STORE.questionNumber = 0;
             STORE.questions.forEach(q => {
